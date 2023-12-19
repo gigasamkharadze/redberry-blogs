@@ -9,6 +9,7 @@ import BlogList from './components/BlogList'
 function App() {
   
   const [blogs, setBlogs] = useState([])
+  const [categories, setCategories] = useState([])
   
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -29,7 +30,15 @@ function App() {
     })
     .then(res => res.json())
     .then(data => {
-      setBlogs(data)
+      setBlogs(data.data)
+    })
+  }, [])
+
+  useEffect(() => {
+    fetch('https://api.blog.redberryinternship.ge/api/categories')
+    .then(res => res.json())
+    .then(data => {
+      setCategories(data.data)
     })
   }, [])
     
@@ -38,7 +47,7 @@ function App() {
         <div className="max-w-[1920px] mx-auto border py-2">
           <Navbar />
           <Hero />
-          <Filter />
+          <Filter categories={categories}/>
           <BlogList blogs={blogs} />
         </div>
       </div>
