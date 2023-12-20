@@ -4,12 +4,14 @@ import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import Filter from './components/Filter'
 import BlogList from './components/BlogList'
-
+import SignInWindow from './components/SignInWindow'
 
 function App() {
   
   const [blogs, setBlogs] = useState([])
   const [categories, setCategories] = useState([])
+  const [isLoggingIn, setIsLoggingIn] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   
   useEffect(() => {
     const token = localStorage.getItem('token')
@@ -44,10 +46,11 @@ function App() {
     
   return (
       <div className="App bg-primary">
-        <div className="max-w-[1920px] mx-auto border py-2">
-          <Navbar />
+        <div className="max-w-[1920px] mx-auto py-2">
+          <Navbar setIsLoggingIn={setIsLoggingIn} isLoggedIn={isLoggedIn}/>
           <Hero />
-          <Filter categories={categories}/>
+          {isLoggingIn && <SignInWindow setIsLoggingIn={setIsLoggingIn} setIsLoggedIn={setIsLoggedIn} />}
+          <Filter categories={categories}/> 
           <BlogList blogs={blogs} />
         </div>
       </div>

@@ -9,7 +9,10 @@ export default {
       colors: {
         purple: "#5D37F3",
         primary: "#F3F2FA",
-        black: '#1A1A1F'
+        black: '#1A1A1F',
+        gray: '#E4E3EB',
+        red: '#EF5353',
+        lightRed: '#FAF2F3'
       },
     },
   },
