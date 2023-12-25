@@ -17,7 +17,6 @@ export default function SignInWindow({ setIsLoggingIn, setIsLoggedIn }) {
     async function handleSubmit() {
         const emailInput = document.querySelector('#email')
         const emailValue = emailInput.value
-        console.log(emailValue)
         const response = await fetch('https://api.blog.redberryinternship.ge/api/login', {
             method: 'POST',
             headers: {
@@ -74,9 +73,11 @@ export default function SignInWindow({ setIsLoggingIn, setIsLoggedIn }) {
                 <img src="/info-circle.svg" alt="error" />
                 <span className="text-red font-semibold">ელ-ფოსტა არ მოიძებნა</span>
             </div>
-            <button 
-            type="button"
-            onClick={handleSubmit} 
+            <button
+            onClick={(e) => {
+                e.preventDefault()
+                handleSubmit()
+            }} 
             className="bg-purple text-white font-semibold w-full mt-[24px] rounded-[8px] py-[10px]">შესვლა</button>
         </form>
     </div>

@@ -1,29 +1,22 @@
-import { useEffect } from "react";
+import { createBrowserRouter, useNavigate } from 'react-router-dom';
 
 function Navbar({ setIsLoggingIn, isLoggedIn }){
-
-    useEffect(() => {
-        const signInButton = document.querySelector('.sign-in-button');
-        signInButton.addEventListener('click', () => {
-            setIsLoggingIn(true);
-        })
-
-        // cleanup
-        return () => {
-            signInButton.removeEventListener('click', () => {
-                setIsLoggingIn(true);
-            })
-        }
-    }, [])
-
-
+    const navigate = useNavigate();
     return (
         <nav className="flex items-center justify-between px-[76px] py-[20px] text-white bg-white">
             <img src="/redberry-logo.svg" alt="redberry logo" />
-            <button className="sign-in-button bg-purple px-[20px] py-[10px] rounded-[8px]">
-                {isLoggedIn ? 'დაამატე ბლოგი' : 'შესვლა'}
-            </button>
-        </nav>
+            {isLoggedIn ? 
+            <button 
+            className="add-blog-button bg-purple px-[20px] py-[10px] rounded-[8px]"
+            onClick={() => {navigate('/add-blog');}}
+            >დაამატე ბლოგი</button>
+            :
+            <button 
+            className="sign-in-button bg-purple px-[20px] py-[10px] rounded-[8px]"
+            onClick={() => {setIsLoggingIn(true);}}
+            >შესვლა</button>
+            }
+            </nav>
       );
 }
 
