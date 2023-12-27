@@ -1,4 +1,6 @@
 import { useState, useEffect, useMemo } from "react";
+import { useAuth } from "../context/AuthContext";
+import { useBlog } from "../context/BlogContext";
 
 import Navbar from "../components/root/Navbar";
 import Hero from "../components/root/Hero";
@@ -7,11 +9,11 @@ import BlogList from "../components/root/BlogList";
 import SignInWindow from "../components/root/SignInWindow";
 
 export default function root() {
-  const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filterCategories, setFilterCategories] = useState([]);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const { isLoggedIn, login, logout } = useAuth();
+  const { blogs, setBlogs } = useBlog();
 
   const filteredBlogs = useMemo(() => {
     if (filterCategories.length === 0) return blogs;
@@ -34,19 +36,6 @@ export default function root() {
   }, []);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    fetch("https://api.blog.redberryinternship.ge/api/blogs", {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setBlogs(data.data);
-      });
-  }, []);
-
-  useEffect(() => {
     fetch("https://api.blog.redberryinternship.ge/api/categories")
       .then((res) => res.json())
       .then((data) => {
@@ -62,7 +51,7 @@ export default function root() {
         {isLoggingIn && (
           <SignInWindow
             setIsLoggingIn={setIsLoggingIn}
-            setIsLoggedIn={setIsLoggedIn}
+            login={login}
           />
         )}
         <Filter 

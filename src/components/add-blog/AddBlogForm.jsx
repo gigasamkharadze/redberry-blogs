@@ -61,7 +61,7 @@ export default function AddBlogForm() {
     }
 
     return (
-        <form className="w-[600px] my-[33px]" onSubmit={(e) => handleSubmit(e)}>
+        <form className="w-[800px] my-[33px]" onSubmit={(e) => handleSubmit(e)}>
             <h2 className="font-bold mb-[40px] text-[32px]">ბლოგის დამატება</h2>
             
             <label className="font-semibold text-sm" htmlFor="photo">ატვირთეთ ფოტო</label>

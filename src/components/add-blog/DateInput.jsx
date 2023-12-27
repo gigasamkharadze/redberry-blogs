@@ -19,9 +19,9 @@ export default function DateInput({ postDate, setPostDate, showCalendar, setShow
 
     
     return (
-    <div className="max-w-[300px] flex flex-col flex-grow cursor-pointer">
+    <div className="max-w-[400px] flex flex-col flex-grow">
         <label className="font-semibold text-sm" htmlFor="post-date">გამოქვეყნების თარიღი *</label>
-        <div className="post-date w-[288px] flex flex-row py-3 px-4 border border-gray 
+        <div className="post-date w-[400px] flex flex-row py-3 px-4 border border-gray 
                 bg-white mt-2 gap-2 rounded-xl">
             <img src="/calendar.svg" alt="calendar icon" />
             <input

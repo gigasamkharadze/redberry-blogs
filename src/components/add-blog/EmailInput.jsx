@@ -16,7 +16,7 @@ export default function EmailInput({ setEmail}) {
     <div className="flex flex-col w-1/2 mb-[40px]">
         <label className="font-semibold text-sm" htmlFor="email">ელ-ფოსტა</label>
         <input 
-            className="email-input my-[8px] px-[16px] py-[12px] h-[44px] w-[288px] rounded-[12px] text-sm
+            className="email-input my-[8px] px-[16px] py-[12px] h-[44px] w-[384px] rounded-[12px] text-sm
                 border border-gray focus:outline-none focus:ring-2 focus:ring-purple focus:border-transparent"
             type="email" 
             name="email" 

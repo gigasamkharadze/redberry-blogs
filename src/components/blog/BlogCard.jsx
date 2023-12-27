@@ -1,8 +1,9 @@
 import { createBrowserRouter, useNavigate } from 'react-router-dom';
-export default function Blog({ blog }) {
+
+export default function BlogCard({ blog }) {
   const navigate = useNavigate();
   return (
-    <div>
+    <div className='flex-shrink-0 w-[430px]'>
       <img 
       src={blog.image} 
       alt="Image for the blog" 

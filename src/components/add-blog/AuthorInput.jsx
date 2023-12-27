@@ -52,7 +52,7 @@ export default function AuthorInput({ author, setAuthor}) {
     <div className="flex flex-col flex-grow">
         <label className="font-semibold text-sm" htmlFor="author">ავტორი *</label>
         <input 
-            className="my-[8px] px-[16px] py-[12px] h-[44px] w-[288px] rounded-[12px] text-sm border 
+            className="my-[8px] px-[16px] py-[12px] h-[44px] w-[384] rounded-[12px] text-sm border 
             border-gray focus:outline-none focus:ring-2 focus:ring-purple focus:border-transparent"
             type="text" 
             name="author" 

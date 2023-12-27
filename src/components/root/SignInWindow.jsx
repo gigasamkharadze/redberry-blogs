@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-export default function SignInWindow({ setIsLoggingIn, setIsLoggedIn }) {
+export default function SignInWindow({ setIsLoggingIn, login  }) {
   
     useEffect(() => {
         const closeBtn = document.querySelector('.close-btn')
@@ -55,7 +55,7 @@ export default function SignInWindow({ setIsLoggingIn, setIsLoggedIn }) {
             onClick={() => {
                 setIsLoggingIn(false)
                 localStorage.setItem('isLoggedIn', true)
-                setIsLoggedIn(true)
+                login()
             }}
             >კარგი</button>
         <h2 className="sign-in-text w-full text-center mb-[24px] font-bold">შესვლა</h2>

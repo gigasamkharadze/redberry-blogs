@@ -26,7 +26,7 @@ export default function DescriptionInput({ description, setDescription}) {
     <div className="flex flex-col mb-[24px]">
         <label className="font-semibold text-sm" htmlFor="description">აღწერა *</label>
         <textarea 
-            className="my-[8px] text-sm px-[16px] py-[12px] h-[88px] w-[600px] rounded-[12px] 
+            className="my-[8px] text-sm px-[16px] py-[12px] h-[88px] w-[800px] rounded-[12px] 
                 border border-gray focus:outline-none focus:ring-2 focus:ring-purple focus:border-transparent"
             name="description" 
             id="description" 

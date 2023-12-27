@@ -5,8 +5,11 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
+import { AuthProvider } from './context/AuthContext.jsx';
+import { BlogProvider } from './context/BlogContext.jsx';
 import Root from './routes/root.jsx';
 import AddBlog from './routes/AddBlog.jsx';
+import Blog from './routes/Blog.jsx';
 
 const router = createBrowserRouter([
   {
@@ -20,12 +23,14 @@ const router = createBrowserRouter([
   },
   {
     path: "/blog/:id",
-    element: <h1>Blog</h1>,
+    element: <Blog />,
   }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <RouterProvider router={router} />
-  </React.StrictMode>
+  <BlogProvider>
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  </BlogProvider>
 );
