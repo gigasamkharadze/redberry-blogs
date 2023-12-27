@@ -6,6 +6,15 @@ export default function FilterOption({ category, setFilterCategories, filterCate
     } else {
       setFilterCategories([...filterCategories, category.id])
     }
+    const localStorageFilterCategories = JSON.parse(localStorage.getItem('filterCategories'))
+    if (!localStorageFilterCategories) {
+      localStorage.setItem('filterCategories', JSON.stringify([category.id]))
+    } else {
+      const newFilterCategories = localStorageFilterCategories.includes(category.id)
+        ? localStorageFilterCategories.filter((item) => item !== category.id)
+        : [...localStorageFilterCategories, category.id]
+      localStorage.setItem('filterCategories', JSON.stringify(newFilterCategories))
+    }
   }
 
   const isActive = filterCategories.includes(category.id)

@@ -9,9 +9,11 @@ import BlogList from "../components/root/BlogList";
 import SignInWindow from "../components/root/SignInWindow";
 
 export default function root() {
-  const [categories, setCategories] = useState([]);
-  const [filterCategories, setFilterCategories] = useState([]);
-  const [isLoggingIn, setIsLoggingIn] = useState(false);
+  const [ categories, setCategories ] = useState([]);
+  const [ filterCategories, setFilterCategories ] = useState(localStorage.getItem('filterCategories') 
+      ? JSON.parse(localStorage.getItem('filterCategories')) 
+      : []);
+  const [ isLoggingIn, setIsLoggingIn ] = useState(false);
   const { isLoggedIn, login, logout } = useAuth();
   const { blogs, setBlogs } = useBlog();
 
