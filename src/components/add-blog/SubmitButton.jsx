@@ -22,7 +22,6 @@ export default function SubmitButton({photo, author, title, description, postDat
         cursor: isFormValid ? 'pointer' : 'default'
     }
 
-
     return (
     <button 
         className="w-[288px] block ml-auto py-[10px] bg-gray text-white rounded-[8px]

@@ -14,7 +14,13 @@ export const BlogProvider = ({ children }) => {
         })
         .then((res) => res.json())
         .then((data) => {
-            setBlogs(data.data);
+            const blogs = data.data;
+            const filteredBlogs = blogs.filter((blog) => {
+                const publishDate = new Date(blog.publish_date);
+                const currentDate = new Date();
+                return publishDate <= currentDate;
+            });
+            setBlogs(filteredBlogs);
         });
     }, []);
     

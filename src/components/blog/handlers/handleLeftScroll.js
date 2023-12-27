@@ -2,7 +2,11 @@ export function handleLeftScroll(scrollContainer) {
     const leftArrow = document.querySelector(".left-arrow")
     const rightArrow = document.querySelector(".right-arrow")
     
-    scrollContainer.scrollLeft -= 500;
+    scrollContainer.scrollBy({
+        left: -500,
+        behavior: 'smooth'
+    });
+    
     const canScrollLeft = scrollContainer.scrollLeft > 0;
     if (!canScrollLeft) {
         leftArrow.classList.remove('bg-purple')

@@ -41,6 +41,23 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
             errorMessage.classList.remove('hidden')
         }   
     }
+
+    const handleChange = (e) => {
+        const emailValue = e.target.value
+        const regex = /@redberry\.ge$/
+        const emailInput = document.querySelector('#email')
+        if (regex.test(emailValue)) {
+            emailInput.classList.remove('border-red')
+            emailInput.classList.remove('focus:border-red')
+            emailInput.classList.remove('bg-lightRed')
+            emailInput.classList.remove('focus:outline-none')
+        }else{
+            emailInput.classList.add('border-red')
+            emailInput.classList.add('focus:border-red')
+            emailInput.classList.add('bg-lightRed')
+            emailInput.classList.add('focus:outline-none')
+        }
+    }
   
     return (
     <div 
@@ -66,6 +83,7 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
             name="email" 
             id="email" 
             placeholder="Example@redberry.ge"
+            onChange={(e) => handleChange(e)}
             className={
                 "w-full rounded-[12px] border-2 border-gray focus:border-purple focus:outline-none " +
                 "py-[12px] px-[16px] mt-[8px] font-normal "} />

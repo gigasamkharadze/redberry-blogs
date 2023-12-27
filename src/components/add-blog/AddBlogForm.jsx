@@ -11,7 +11,7 @@ import CategoryInput from "./CategoryInput";
 import EmailInput from "./EmailInput";
 import SubmitButton from "./SubmitButton";
 
-export default function AddBlogForm() {
+export default function AddBlogForm({ setShowSuccessMessage }) {
     const [photo, setPhoto] = useState(null)
     const [author, setAuthor] = useState('')
     const [title, setTitle] = useState('')
@@ -40,12 +40,6 @@ export default function AddBlogForm() {
         formData.append('publish_date', postDate.toISOString().slice(0, 10))
         formData.append('categories', JSON.stringify(selectedCategories))
         formData.append('email', email)
-
-        // print values in console
-        for (var value of formData.values()) {
-            console.log(value);
-        }
-        
         
         const token = localStorage.getItem('token')
         const response = await fetch('https://api.blog.redberryinternship.ge/api/blogs', {
@@ -56,8 +50,9 @@ export default function AddBlogForm() {
             },
             body: formData
         })
-        console.log(response.status)
-
+        if (response.status === 204) {
+            setShowSuccessMessage(true)
+        }
     }
 
     return (
@@ -77,9 +72,9 @@ export default function AddBlogForm() {
             <DescriptionInput description={description} setDescription={setDescription} />
 
             <div className="w-full relative flex flex-row gap-2 mb-[24px]">
-                    <DateInput postDate={postDate} setPostDate={setPostDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} />
-                    <CategoryInput categories={categories} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
-                </div>
+                <DateInput postDate={postDate} setPostDate={setPostDate} showCalendar={showCalendar} setShowCalendar={setShowCalendar} />
+                <CategoryInput categories={categories} selectedCategories={selectedCategories} setSelectedCategories={setSelectedCategories} />
+            </div>
             
             <EmailInput email={email} setEmail={setEmail} />
             <SubmitButton 
@@ -93,7 +88,3 @@ export default function AddBlogForm() {
         </form>
     )
 }
-
-// finish the styling of the form
-// divide into components
-// Handle the form submission
