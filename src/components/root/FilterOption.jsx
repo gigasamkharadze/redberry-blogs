@@ -1,7 +1,7 @@
 export default function FilterOption({ category }) {
   return (
     <div 
-    className="px-[30px] py-[8px] whitespace-nowrap rounded-[30px] cursor-pointer"
+    className="text-xs px-4 py-2 whitespace-nowrap rounded-[30px] cursor-pointer"
     style={{color: category.text_color, backgroundColor: category.background_color}}>
         <p className="font-semibold">{category.title}</p>
     </div>
