@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 
 import Navbar from "../components/root/Navbar";
 import Hero from "../components/root/Hero";
@@ -9,8 +9,19 @@ import SignInWindow from "../components/root/SignInWindow";
 export default function root() {
   const [blogs, setBlogs] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [filterCategories, setFilterCategories] = useState([]);
   const [isLoggingIn, setIsLoggingIn] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const filteredBlogs = useMemo(() => {
+    if (filterCategories.length === 0) return blogs;
+    return blogs.filter((blog) =>{
+      const blogCategories = blog.categories.map((category) => category.id);
+      return blogCategories.some((blogCategory) =>
+        filterCategories.includes(blogCategory)
+      );}
+    );
+  }, [filterCategories, blogs]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -45,7 +56,7 @@ export default function root() {
 
   return (
     <div className="App bg-primary">
-      <div className="max-w-[1920px] mx-auto py-2">
+      <div className="max-w-[1920px] mx-auto pb-10">
         <Navbar setIsLoggingIn={setIsLoggingIn} isLoggedIn={isLoggedIn} />
         <Hero />
         {isLoggingIn && (
@@ -54,8 +65,11 @@ export default function root() {
             setIsLoggedIn={setIsLoggedIn}
           />
         )}
-        <Filter categories={categories} />
-        <BlogList blogs={blogs} />
+        <Filter 
+        categories={categories} 
+        filterCategories={filterCategories}
+        setFilterCategories={setFilterCategories}/>
+        <BlogList blogs={filteredBlogs} />
       </div>
     </div>
   );

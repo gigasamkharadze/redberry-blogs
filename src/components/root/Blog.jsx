@@ -1,10 +1,6 @@
-import FilterOption from "./FilterOption";
 import { createBrowserRouter, useNavigate } from 'react-router-dom';
-
 export default function Blog({ blog }) {
-
   const navigate = useNavigate();
-
   return (
     <div>
       <img 
