@@ -38,8 +38,7 @@ export default function CategoryDropDown({ category, selectedCategories, setSele
         onClick={() => handleClickedCategory(category.id)}
         className='text-xs text-center  py-2 pl-3 rounded-[30px] gap-2 cursor-pointer'
         style={style}
-        >
-        {category.title}
+        >{category.title}
     </span>
   )
 }

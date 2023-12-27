@@ -33,6 +33,7 @@ export default function DescriptionInput({ description, setDescription}) {
             placeholder="შეიყვანეთ აღწერა" 
             cols="30" 
             rows="10"
+            value={description}
             onFocus={(e) => validInputHandler(e)}
             onBlur={(e) => handleBlur(e)}                    
             onChange={(e) => handleChange(e)}></textarea>   

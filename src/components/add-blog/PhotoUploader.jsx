@@ -1,4 +1,4 @@
-export default function PhotoUploader({ setPhoto }) {
+export default function PhotoUploader({ setPhoto, setPhotoName }) {
   return (
     <div className="h-[180px] border border-dashed border-darkGray rounded-[12px] mb-[24px]
             flex flex-col justify-center items-center relative gap-2 bg-lightGray mt-[8px]">
@@ -12,7 +12,15 @@ export default function PhotoUploader({ setPhoto }) {
                 accept="image/*"
                 name="photo" 
                 id="photo" 
-                onChange={(e) => setPhoto(e.target.files[0])}/>აირჩიეთ ფაილი</span>
+                onChange={(e) => {
+                  const reader = new FileReader()
+                  reader.onload = () => {
+                    const base64String = reader.result
+                    setPhoto(base64String)
+                    setPhotoName(e.target.files[0].name)
+                  }
+                  reader.readAsDataURL(e.target.files[0])
+                }}/>აირჩიეთ ფაილი</span>
         </div>
     </div>
   )

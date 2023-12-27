@@ -1,5 +1,7 @@
 export default function Category({ category, handleCategoryClick }) {
 
+    console.log('category', category)
+
     const style = {
         backgroundColor: category.background_color,
         borderColor: category.text_color

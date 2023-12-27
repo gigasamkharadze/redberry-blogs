@@ -36,7 +36,6 @@ export default function AuthorInput({ author, setAuthor}) {
             georgianLetters.classList.remove('text-green')
             georgianLetters.classList.add('text-red')
         }
-
         setAuthor(e.target.value)
     }
 
@@ -58,6 +57,7 @@ export default function AuthorInput({ author, setAuthor}) {
             name="author" 
             id="author" 
             placeholder="შეიყვანეთ ავტორი"
+            value={author}
             onFocus={(e) => {validInputHandler(e)}}
             onBlur={(e) => handleBlur(e)}
             onChange={(e) => handleChange(e)}/>

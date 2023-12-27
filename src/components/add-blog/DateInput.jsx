@@ -25,10 +25,12 @@ export default function DateInput({ postDate, setPostDate, showCalendar, setShow
                 bg-white mt-2 gap-2 rounded-xl">
             <img src="/calendar.svg" alt="calendar icon" />
             <input
+                id="post-date"
+                name="post-date"
                 type="text"
                 readOnly
                 className="cursor-pointer active:outline-none bg-inherit text-sm"
-                value={postDate.toLocaleDateString()}
+                value={new Date(postDate).toLocaleDateString()}
                 onClick={() => setShowCalendar(true)}/>
             
             {showCalendar && (

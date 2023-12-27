@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import { AuthProvider } from './context/AuthContext.jsx';
 import { BlogProvider } from './context/BlogContext.jsx';
+import { CategoryProvider } from './context/CategoryContext.jsx';
 import Root from './routes/root.jsx';
 import AddBlog from './routes/AddBlog.jsx';
 import Blog from './routes/Blog.jsx';
@@ -28,9 +29,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <BlogProvider>
-    <AuthProvider>
-      <RouterProvider router={router} />
-    </AuthProvider>
-  </BlogProvider>
+  <CategoryProvider>
+      <BlogProvider>
+        <AuthProvider>
+          <RouterProvider router={router} />
+        </AuthProvider>
+    </BlogProvider>
+  </CategoryProvider>
 );

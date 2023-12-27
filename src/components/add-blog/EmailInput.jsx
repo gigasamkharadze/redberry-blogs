@@ -2,7 +2,7 @@ import { validateEmail } from "./validators/validateEmail"
 import { handleValidEmail } from "./handlers/validEmailHandler"
 import { handleInvalidEmail } from "./handlers/invalidEmailHandler"
 
-export default function EmailInput({ setEmail}) {
+export default function EmailInput({ email, setEmail}) {
 
     const handleBlur = (e) => {
         const isValid = validateEmail(e.target.value)
@@ -22,6 +22,8 @@ export default function EmailInput({ setEmail}) {
             name="email" 
             id="email"
             placeholder="Example@redberry.com"
+            autoComplete="off"
+            value={email}
             onChange={(e) =>{setEmail(e.target.value)}}
             onBlur={(e) => handleBlur(e) }/>    
                 <span className="email-warning hidden text-xs text-red flex gap-2">

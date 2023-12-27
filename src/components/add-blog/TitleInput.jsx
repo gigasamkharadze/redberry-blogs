@@ -35,6 +35,7 @@ export default function TitleInput({ title, setTitle }) {
             name="title" 
             id="title" 
             placeholder="შეიყვანეთ სათაური"
+            value={title}
             onFocus={(e) => validInputHandler(e)}
             onBlur={(e) => handleBlur(e)}
             onChange={(e) => handleChange(e)}/>

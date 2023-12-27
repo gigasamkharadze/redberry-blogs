@@ -11,36 +11,35 @@ import CategoryInput from "./CategoryInput";
 import EmailInput from "./EmailInput";
 import SubmitButton from "./SubmitButton";
 
-export default function AddBlogForm({ setShowSuccessMessage }) {
-    const [photo, setPhoto] = useState(null)
-    const [author, setAuthor] = useState('')
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [postDate, setPostDate] = useState(new Date())
-    const [showCalendar, setShowCalendar] = useState(false)
-    const [categories, setCategories] = useState([])
-    const [selectedCategories, setSelectedCategories] = useState([])
-    const [email, setEmail] = useState('')
+import useLocalStorage from '../../hooks/useLocalStorage'
+import { useCategory } from "../../context/CategoryContext";
 
-    useEffect(() => {
-        fetch('https://api.blog.redberryinternship.ge/api/categories')
-        .then(res => res.json())
-        .then(data => {
-          setCategories(data.data)
-        })
-      }, [])
+export default function AddBlogForm({ setShowSuccessMessage }) {
+    const [photo, setPhoto] = useLocalStorage('photo', '')
+    const [photoName, setPhotoName] = useLocalStorage('photoName', '')  
+    const [author, setAuthor] = useLocalStorage('author', '')
+    const [title, setTitle] = useLocalStorage('title', '')
+    const [description, setDescription] = useLocalStorage('description', '')
+    const [postDate, setPostDate] = useLocalStorage('postDate', new Date())
+    const [showCalendar, setShowCalendar] = useState(false)
+    const { categories } = useCategory()
+    const [selectedCategories, setSelectedCategories] = useLocalStorage('selectedInputCategories', [])
+    const [email, setEmail] = useLocalStorage('email', '')
 
     async function handleSubmit(e) {
         e.preventDefault()
         const formData = new FormData()
         formData.append('title', title)
-        formData.append('description', description)
-        formData.append('image', photo)
+        formData.append('description', description)    
         formData.append('author', author)
-        formData.append('publish_date', postDate.toISOString().slice(0, 10))
+        formData.append('publish_date', new Date(postDate).toISOString().slice(0, 10))
         formData.append('categories', JSON.stringify(selectedCategories))
         formData.append('email', email)
-        
+
+        const base64 = await fetch(photo)
+        const blob = await base64.blob()
+        formData.append('image', blob)
+
         const token = localStorage.getItem('token')
         const response = await fetch('https://api.blog.redberryinternship.ge/api/blogs', {
             method: 'POST',
@@ -52,17 +51,19 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
         })
         if (response.status === 204) {
             setShowSuccessMessage(true)
+            console.log('successfully posted the blog')
         }
-    }
+        console.log('status: ', response.status)
+    }  
 
     return (
         <form className="w-[800px] my-[33px]" onSubmit={(e) => handleSubmit(e)}>
             <h2 className="font-bold mb-[40px] text-[32px]">ბლოგის დამატება</h2>
             
-            <label className="font-semibold text-sm" htmlFor="photo">ატვირთეთ ფოტო</label>
+            <p className="font-semibold text-sm">ატვირთეთ ფოტო</p>
             {photo ? 
-            <PhotoHolder photo={photo} setPhoto={setPhoto} /> : 
-            <PhotoUploader setPhoto={setPhoto} />}
+            <PhotoHolder photo={photo} setPhoto={setPhoto} photoName={photoName} /> : 
+            <PhotoUploader setPhoto={setPhoto} setPhotoName={setPhotoName} />}
             
             <div className="w-full flex flex-row gap-2 mb-[24px]">
                 <AuthorInput author={author} setAuthor={setAuthor} />
