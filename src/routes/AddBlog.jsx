@@ -7,7 +7,7 @@ import { createBrowserRouter, useNavigate } from 'react-router-dom';
 
 export default function AddBlog() {
 
-  const [ showSuccessMessage, setShowSuccessMessage ] = useState(true)
+  const [ showSuccessMessage, setShowSuccessMessage ] = useState(false)
 
   const navigate = useNavigate();
   return (

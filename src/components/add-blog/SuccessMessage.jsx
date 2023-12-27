@@ -19,7 +19,7 @@ export default function SuccessMessage({ setShowSuccessMessage }) {
         className="bg-purple text-white rounded-lg w-full py-2.5 text-base 
         font-normal hover:opacity-90 transition duration-300 ease-in-out"
         onClick={() => navigate('/')}
-        >მთავარ გვერძე დაბრუნება</button>
+        >მთავარ გვერდზე დაბრუნება</button>
     </div>
   )
 }
