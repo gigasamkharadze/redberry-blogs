@@ -1,5 +1,5 @@
-import AddBlogNavbar from "../components/AddBlogNavbar"
-import AddBlogForm from "../components/AddBlogForm"
+import AddBlogNavbar from "../components/add-blog/AddBlogNavbar"
+import AddBlogForm from "../components/add-blog/AddBlogForm"
 
 export default function AddBlog() {
   return (
