@@ -37,7 +37,8 @@ export default function Blog() {
             const commonCategories = blogCategories.filter(category => otherBlogCategories.includes(category))
             if (commonCategories.length > 0) return true
         })
-        return similarBlogs
+        const filteredSimilarBlogs = similarBlogs.filter(similarBlog => similarBlog.id !== blog.id)
+        return filteredSimilarBlogs
     }, [blogs, blog])
 
     return (

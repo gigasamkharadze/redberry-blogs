@@ -1,7 +1,4 @@
-import { invalidCategoryHandler } from "./handlers/invalidCategoryHandler"
-import { validCategoryHandler } from "./handlers/validCategoryHandler"
-
-export default function CategoryDropDown({ category, selectedCategories, setSelectedCategories}) {
+export default function CategoryDropDown({setValidInput, category, selectedCategories, setSelectedCategories}) {
     
     const style = {
         backgroundColor: category.background_color,
@@ -27,10 +24,10 @@ export default function CategoryDropDown({ category, selectedCategories, setSele
         const categoryInput = document.querySelector('.category-filter-container')
         categoryInput.classList.remove('bg-white')
         
-        if (newSelectedCategories.length === 0) invalidCategoryHandler(categoryInput)
-        else validCategoryHandler(categoryInput)
+        if (newSelectedCategories.length === 0) setValidInput(false)
+        else setValidInput(true)
     
-    setSelectedCategories(newSelectedCategories)
+        setSelectedCategories(newSelectedCategories)
     }
   
     return (

@@ -32,6 +32,9 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
             document.querySelector('.ok-btn').classList.remove('hidden')
             emailInput.classList.add('hidden')
             document.querySelector('.sign-in-text').classList.add('hidden')
+
+            localStorage.setItem('isLoggedIn', true)
+            login()
         }else {
             emailInput.classList.add('border-red')
             emailInput.classList.add('focus:border-red')
@@ -69,16 +72,13 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
         </div>
             <button 
             className="hidden ok-btn bg-purple text-white font-semibold w-full mt-[24px] rounded-[8px] py-[10px]"
-            onClick={() => {
-                setIsLoggingIn(false)
-                localStorage.setItem('isLoggedIn', true)
-                login()
-            }}
+            onClick={() => {setIsLoggingIn(false)}}
             >კარგი</button>
         <h2 className="sign-in-text w-full text-center mb-[24px] font-bold">შესვლა</h2>
         <form method="post">
             <label htmlFor="email" className="font-semibold">ელ-ფოსტა</label>
             <input 
+            autoComplete="off"
             type="email" 
             name="email" 
             id="email" 

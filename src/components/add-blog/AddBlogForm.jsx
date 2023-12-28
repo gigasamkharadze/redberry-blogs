@@ -15,7 +15,9 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import { useCategory } from "../../context/CategoryContext";
 import { useBlog } from "../../context/BlogContext";
 
-export default function AddBlogForm({ setShowSuccessMessage }) {
+import { cleanUpValidations } from "./handlers/cleanUpValidations";
+
+export default function AddBlogForm({ setShowSuccessMessage, showSuccessMessage }) {
     const [photo, setPhoto] = useLocalStorage('photo', '')
     const [photoName, setPhotoName] = useLocalStorage('photoName', '')  
     const [author, setAuthor] = useLocalStorage('author', '')
@@ -63,10 +65,18 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
         setSelectedCategories([])
         setEmail('')
         fetchBlogs()
+        cleanUpValidations()
     }  
-    
+
+    const style = {
+        opacity: showSuccessMessage ? .5 : 1,
+    }
+
     return (
-        <form className="w-[800px] my-[33px]" onSubmit={(e) => handleSubmit(e)}>
+    <div 
+    style={style}
+    className="w-[800px] my-[33px]">
+        <form onSubmit={(e) => handleSubmit(e)}>
             <h2 className="font-bold mb-[40px] text-[32px]">ბლოგის დამატება</h2>
             
             <p className="font-semibold text-sm">ატვირთეთ ფოტო</p>
@@ -96,5 +106,6 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
                 categories={selectedCategories} 
                 email={email}/>
         </form>
+    </div>
     )
 }

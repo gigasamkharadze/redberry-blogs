@@ -13,17 +13,16 @@ export default function SimilarBlogsContainer({ blogs }) {
 
         scrollContainer.addEventListener("wheel", () => handleScroll(scrollContainer))
         rightArrow.addEventListener("click", () => handleRightScroll(scrollContainer))
-        leftArrow.addEventListener("click", () => handleLeftScroll(scrollContainer)
-        )
+        leftArrow.addEventListener("click", () => handleLeftScroll(scrollContainer))
     return () => {
         scrollContainer.removeEventListener("wheel", () => handleScroll(scrollContainer))
         rightArrow.removeEventListener("click", () => handleRightScroll(scrollContainer))
         leftArrow.removeEventListener("click", () => handleLeftScroll(scrollContainer))
-    }
+        }
     }, [])
 
   return (
-    <div className="max-w-[1750px]">
+    <div className="max-w-[1750px] w-full">
         <div className="w-full flex mb-10">
             <h2 className="font-semibold text-[32px]">მსგავსი სტატიები</h2>
             <div className="flex ml-auto gap-6">

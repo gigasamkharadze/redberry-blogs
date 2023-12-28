@@ -1,15 +1,47 @@
 import { validateEmail } from "./validators/validateEmail"
-import { handleValidEmail } from "./handlers/validEmailHandler"
-import { handleInvalidEmail } from "./handlers/invalidEmailHandler"
+import { useEffect, useState } from "react"
 
 export default function EmailInput({ email, setEmail}) {
+
+    useEffect(() => {
+        var emailValid = true;
+        if (email) {
+            emailValid = validateEmail(email)
+        }
+        setValidEmail(emailValid)
+    }, [email])
+
+    const [validEmail, setValidEmail] = useState(true)
 
     const handleBlur = (e) => {
         const isValid = validateEmail(e.target.value)
         const emailInput = document.querySelector('.email-input')
         emailInput.classList.remove('bg-white')
-        if (isValid) handleValidEmail(emailInput)
-        else handleInvalidEmail(emailInput)
+        if (isValid) setValidEmail(true)
+        else setValidEmail(false)
+    }
+
+    const style = {
+        borderColor: '#E4E3EB',
+        backgroundColor: '#FFFFFF',
+    }
+    if (validEmail === true) {
+        style.borderColor = '#10B981'
+        style.backgroundColor = '#ECFDF5'
+    }
+    else if (validEmail === false) {
+        style.borderColor = '#EF4444'
+        style.backgroundColor = '#FEF2F2'
+    }
+
+    const warningStyle = {
+        display: 'hidden'
+    }
+    if (validEmail === true) {
+        warningStyle.display = 'none'
+    }
+    if (validEmail === false) {
+        warningStyle.display = 'flex'
     }
 
     return (
@@ -24,9 +56,12 @@ export default function EmailInput({ email, setEmail}) {
             placeholder="Example@redberry.com"
             autoComplete="off"
             value={email}
+            style={style}
             onChange={(e) =>{setEmail(e.target.value)}}
             onBlur={(e) => handleBlur(e) }/>    
-                <span className="email-warning hidden text-xs text-red flex gap-2">
+                <span 
+                style={warningStyle}
+                className="hidden email-warning text-xs text-red flex items-center gap-2">
                     <img 
                     className="info-circle" 
                     src="/info-circle.svg" 

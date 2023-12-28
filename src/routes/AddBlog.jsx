@@ -19,7 +19,7 @@ export default function AddBlog() {
               <img className="m-auto" src="/arrow-left.svg" alt="scroll left" />
         </div>
         {showSuccessMessage && <SuccessMessage setShowSuccessMessage={setShowSuccessMessage} />}
-        <AddBlogForm showSuccessMessage={setShowSuccessMessage} setShowSuccessMessage={setShowSuccessMessage}/>
+        <AddBlogForm showSuccessMessage={showSuccessMessage} setShowSuccessMessage={setShowSuccessMessage}/>
     </div>    
   )
 }
