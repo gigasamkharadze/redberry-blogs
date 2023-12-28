@@ -4,8 +4,8 @@ export const BlogContext = createContext();
 
 export const BlogProvider = ({ children }) => {
     const [blogs, setBlogs] = useState([]);
-    
-    useEffect(() => {
+
+    const fetchBlogs = () => {
         const token = localStorage.getItem("token");
         fetch("https://api.blog.redberryinternship.ge/api/blogs", {
         headers: {
@@ -22,10 +22,12 @@ export const BlogProvider = ({ children }) => {
             });
             setBlogs(filteredBlogs);
         });
-    }, []);
-    
+    }
+
+    useEffect(() => fetchBlogs(), []);    
+
     return (
-        <BlogContext.Provider value={{ blogs, setBlogs }}>
+        <BlogContext.Provider value={{ blogs, setBlogs, fetchBlogs }}>
             {children}
         </BlogContext.Provider>
     );

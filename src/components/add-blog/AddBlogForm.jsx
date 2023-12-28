@@ -13,6 +13,7 @@ import SubmitButton from "./SubmitButton";
 
 import useLocalStorage from '../../hooks/useLocalStorage'
 import { useCategory } from "../../context/CategoryContext";
+import { useBlog } from "../../context/BlogContext";
 
 export default function AddBlogForm({ setShowSuccessMessage }) {
     const [photo, setPhoto] = useLocalStorage('photo', '')
@@ -25,6 +26,7 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
     const { categories } = useCategory()
     const [selectedCategories, setSelectedCategories] = useLocalStorage('selectedInputCategories', [])
     const [email, setEmail] = useLocalStorage('email', '')
+    const { fetchBlogs } = useBlog()
 
     async function handleSubmit(e) {
         e.preventDefault()
@@ -52,8 +54,17 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
         if (response.status === 204) {
             setShowSuccessMessage(true)
         }
+        setAuthor('')
+        setTitle('')
+        setDescription('')
+        setPostDate(new Date())
+        setPhoto('')
+        setPhotoName('')
+        setSelectedCategories([])
+        setEmail('')
+        fetchBlogs()
     }  
-
+    
     return (
         <form className="w-[800px] my-[33px]" onSubmit={(e) => handleSubmit(e)}>
             <h2 className="font-bold mb-[40px] text-[32px]">ბლოგის დამატება</h2>
