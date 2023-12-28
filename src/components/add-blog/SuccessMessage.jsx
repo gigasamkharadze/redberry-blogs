@@ -4,7 +4,7 @@ export default function SuccessMessage({ setShowSuccessMessage }) {
   const navigate = useNavigate();
   return (
     <div className="absolute flex flex-col z-10 top-1/2 left-1/2 -translate-x-1/2 
-      -translate-y-1/2 h-[300px] w-[640px] bg-white px-6 rounded-xl">
+      -translate-y-1/2 h-[300px] w-[640px] bg-white px-6 rounded-xl shadow-xl">
         <img 
         src="/x.svg" 
         alt="close" 
@@ -18,7 +18,9 @@ export default function SuccessMessage({ setShowSuccessMessage }) {
         <button
         className="bg-purple text-white rounded-lg w-full py-2.5 text-base 
         font-normal hover:opacity-90 transition duration-300 ease-in-out"
-        onClick={() => navigate('/')}
+        onClick={() => {
+          navigate('/');
+        }}
         >მთავარ გვერდზე დაბრუნება</button>
     </div>
   )

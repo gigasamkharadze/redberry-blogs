@@ -9,7 +9,6 @@ import Filter from "../components/root/Filter";
 import BlogList from "../components/root/BlogList";
 import SignInWindow from "../components/root/SignInWindow";
 
-
 export default function root() {
   const { categories } = useCategory();
   const [ filterCategories, setFilterCategories ] = useState(localStorage.getItem('filterCategories') 
@@ -43,7 +42,7 @@ export default function root() {
     <div className="App bg-primary">
       <div className="max-w-[1920px] mx-auto pb-10">
         <Navbar setIsLoggingIn={setIsLoggingIn} isLoggedIn={isLoggedIn} />
-        <Hero />
+        <Hero isLoggingIn={isLoggingIn}/>
         {isLoggingIn && (
           <SignInWindow
             setIsLoggingIn={setIsLoggingIn}
@@ -51,10 +50,13 @@ export default function root() {
           />
         )}
         <Filter 
+        isLloggingIn={isLoggingIn}
         categories={categories} 
         filterCategories={filterCategories}
         setFilterCategories={setFilterCategories}/>
-        <BlogList blogs={filteredBlogs} />
+        <BlogList 
+        isLloggingIn={isLoggingIn}
+        blogs={filteredBlogs} />
       </div>
     </div>
   );

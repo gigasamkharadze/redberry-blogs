@@ -6,8 +6,6 @@ import CategoryDropDown from "./CategoryDropDown"
 
 export default function CategoryInput({ categories, selectedCategories, setSelectedCategories }) {
 
-    console.log('hereee')
-
     const handleCategoryClick = (id) => {
         setSelectedCategories(selectedCategories.filter((categoryId) => categoryId !== id))
         
@@ -22,9 +20,6 @@ export default function CategoryInput({ categories, selectedCategories, setSelec
         document.querySelector('.arrow').classList.toggle('rotate-180')
         document.querySelector('.categories-select').classList.toggle('hidden')    
     }
-
-    console.log('selectedCategories', selectedCategories)
-    console.log('categories', categories)
 
     return (
     <div className="relative flex flex-col flex-grow z-0">

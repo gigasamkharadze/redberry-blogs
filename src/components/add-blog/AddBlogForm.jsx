@@ -51,9 +51,7 @@ export default function AddBlogForm({ setShowSuccessMessage }) {
         })
         if (response.status === 204) {
             setShowSuccessMessage(true)
-            console.log('successfully posted the blog')
         }
-        console.log('status: ', response.status)
     }  
 
     return (

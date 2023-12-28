@@ -61,7 +61,7 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
   
     return (
     <div 
-    className="absolute bg-white left-0 right-0 top-[314px] mx-auto max-w-[640px] px-[26px] py-[40px] rounded-xl">
+    className="shadow-xl z-10 absolute bg-white left-0 right-0 top-[314px] mx-auto max-w-[640px] px-[26px] py-[40px] rounded-xl">
         <img src="/x.svg" alt="close" className="close-btn absolute top-[20px] right-[18px] cursor-pointer" />
         <div className="mb-[24px] hidden ok-message">
             <img src="/tick-circle.svg" alt="tick" className="mx-auto mb-[10px]" />
