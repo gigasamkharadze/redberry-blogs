@@ -4,14 +4,14 @@ import { useEffect, useState } from "react"
 export default function EmailInput({ email, setEmail}) {
 
     useEffect(() => {
-        var emailValid = true;
-        if (email) {
+        var emailValid = null;
+        if (email && email.length > 0) {
             emailValid = validateEmail(email)
         }
         setValidEmail(emailValid)
     }, [email])
 
-    const [validEmail, setValidEmail] = useState(true)
+    const [validEmail, setValidEmail] = useState(null)
 
     const handleBlur = (e) => {
         const isValid = validateEmail(e.target.value)

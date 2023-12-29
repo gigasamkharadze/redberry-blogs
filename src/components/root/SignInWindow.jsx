@@ -32,7 +32,6 @@ export default function SignInWindow({ setIsLoggingIn, login  }) {
             document.querySelector('.ok-btn').classList.remove('hidden')
             emailInput.classList.add('hidden')
             document.querySelector('.sign-in-text').classList.add('hidden')
-
             localStorage.setItem('isLoggedIn', true)
             login()
         }else {

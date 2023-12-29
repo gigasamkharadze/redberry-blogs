@@ -1,15 +1,15 @@
-export default function CategoryDropDown({setValidInput, category, selectedCategories, setSelectedCategories}) {
+export default function CategoryDropDown({category, selectedCategories, setSelectedCategories}) {
     
     const style = {
         backgroundColor: category.background_color,
-        borderColor: category.text_color,
+        color: category.text_color
     }
-    
+        
     const isSelected = selectedCategories.includes(category.id)
     if (isSelected) {
-        style.border = '1px solid black'
+        style.opacity = 1
     }else{
-        style.border = '1px solid transparent'
+        style.opacity = 0.7
     }
 
     const handleClickedCategory = (id) => {
@@ -19,21 +19,14 @@ export default function CategoryDropDown({setValidInput, category, selectedCateg
             newSelectedCategories.splice(selectedCategories.indexOf(id), 1)
         } else {
             newSelectedCategories.push(id)
-        }
-
-        const categoryInput = document.querySelector('.category-filter-container')
-        categoryInput.classList.remove('bg-white')
-        
-        if (newSelectedCategories.length === 0) setValidInput(false)
-        else setValidInput(true)
-    
+        }    
         setSelectedCategories(newSelectedCategories)
     }
   
     return (
     <span 
         onClick={() => handleClickedCategory(category.id)}
-        className='text-xs text-center  py-2 pl-3 rounded-[30px] gap-2 cursor-pointer'
+        className='text-xs w-max py-2 px-3 rounded-[30px] cursor-pointer'
         style={style}
         >{category.title}
     </span>

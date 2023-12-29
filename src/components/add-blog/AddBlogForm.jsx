@@ -54,6 +54,7 @@ export default function AddBlogForm({ setShowSuccessMessage, showSuccessMessage 
             body: formData
         })
         if (response.status === 204) {
+            console.log('success')
             setShowSuccessMessage(true)
         }
         setAuthor('')

@@ -40,6 +40,7 @@ export default function DescriptionInput({ description, setDescription}) {
     const style = {
         borderColor: '#E4E3EB',
         backgroundColor: '#FFFFFF',
+        resize: 'none'
     }
     if (validInput === true) {
         style.borderColor = '#10B981'
